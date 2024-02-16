@@ -10,7 +10,16 @@ const ApiRoutes = {
     DASHBOARD: {
         path: '/',
         authenticate: true
-    }
+    },
+    FORGOT_PASSWORD: {
+        path: "/users/forgotpassword",
+        authenticate: false
+    },
+    UPDATE_PASSWORD: {
+        path: "/users/updatepassword",
+        authenticate: false
 
-}
-export default ApiRoutes
+    }
+};
+
+export default ApiRoutes;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React/* , { useState } */ from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
@@ -8,27 +8,31 @@ import ApiRoutes from '../utlis/ApiRoutes';
 
 function Signin() {
     let navigate = useNavigate()
+    /* const [successMessage, setSuccessMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState(''); */
     const handleSubmit = async (e) => {
         try {
             e.preventDefault()
             const formData = new FormData(e.target);
             const formProps = Object.fromEntries(formData)
-            const { name, email, phone, password } = formProps;
+
 
             /* console.log(formProps); */
 
-            let res = await AxiosService.post(ApiRoutes.SIGN_IN.path, { name, email, phone, password }, {
+            let res = await AxiosService.post(ApiRoutes.SIGN_IN.path, formProps, {
                 authenticate: ApiRoutes.SIGN_IN.authenticate,
             });
 
             if (res.status === 200) {
                 toast.success(res.data.message);
+                /* setSuccessMessage('Signin successful'); */
                 sessionStorage.setItem('token', res.data.token)
                 navigate("/dashboard")
             }
 
         } catch (error) {
             toast.error(error?.response?.data?.message || error.message)
+            /* setErrorMessage(error?.response?.data?.message || error.message); */
         }
     }
 

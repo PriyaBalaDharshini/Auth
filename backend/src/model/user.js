@@ -34,11 +34,11 @@ const userSchema = new mongoose.Schema({
     }
 },
     {
-        collection: "User",
+        collection: "users",
         versionKey: false
     }
 );
 
-const userModel = mongoose.model("User", userSchema);
+const userModel = mongoose.model("users", userSchema);
 export default userModel;
 
